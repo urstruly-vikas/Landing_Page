@@ -1,0 +1,168 @@
+/* Reset & Basics */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  transition: background 0.7s, color 0.7s;
+}
+
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  animation: fade-in-down 1.2s;
+}
+
+#dark-mode-toggle {
+  background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; margin-left: 2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+#dark-mode-toggle:hover {
+  color: #ffa500;
+  transform: scale(1.2) rotate(-10deg);
+}
+
+.logo { font-size: 1.5rem; font-weight: 600; }
+
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.nav-links li a {
+  color: #fff; text-decoration: none; font-weight: 500; position: relative; transition: color 0.3s;
+}
+.nav-links li a::after {
+  content: ''; display: block; width: 0; height: 2px;
+  background: #ffa500; transition: width 0.3s;
+}
+.nav-links li a:hover { color: #ffa500; }
+.nav-links li a:hover::after { width: 100%; }
+
+.hero {
+  height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem;
+  background: linear-gradient(125deg, #1e3c72 40%, #2a5298 91%);
+  animation: gradientShift 10s ease-in-out infinite alternate;
+}
+.hero-content {
+  animation: slide-up-fade 1.2s;
+}
+.hero-content h1 {
+  font-size: 3.5rem; margin-bottom: 1rem;
+  animation: fade-in 1.7s;
+}
+.hero-content p {
+  font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;
+}
+
+.cta-btn {
+  background: #ffa500; color: #1e1e1e; padding: 0.75rem 2rem;
+  border-radius: 30px; text-decoration: none; font-weight: bold;
+  transition: background 0.3s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 0 0 rgba(255, 165, 0, 0);
+  animation: bounce 2s infinite alternate;
+}
+.cta-btn:hover {
+  background: #ff8c00; transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(255, 165, 0, 0.3);
+}
+
+/* Features w/ Animation */
+.features {
+  padding: 4rem 2rem;
+  background: #fff; color: #333; text-align: center;
+  animation: fade-in-up 1.4s;
+}
+.features h2 { font-size: 2rem; margin-bottom: 2rem; }
+.feature-boxes {
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.feature {
+  padding: 1.5rem; background: #f9f9f9; border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.08); transition: transform 0.3s;
+  animation: fade-in-zoom 1s;
+}
+.feature:hover { transform: translateY(-10px) scale(1.04); }
+
+.feature h3 { margin-bottom: 0.5rem; color: #1e3c72; }
+
+@media(min-width: 768px) {
+  .feature-boxes { flex-direction: row; justify-content: space-between; }
+  .hero-content h1 { font-size: 4rem; }
+}
+
+/* Footer */
+footer {
+  text-align: center; padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3); color: #ccc; font-size: 0.9rem;
+  animation: fade-in-up 2s;
+}
+
+/* --- Animations Keyframes --- */
+@keyframes fade-in {
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+}
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fade-in-zoom {
+  from { opacity: 0; transform: scale(0.96);}
+  to { opacity: 1; transform: scale(1);}
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(50px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes bounce {
+  0%   { transform: scale(1);}
+  100% { transform: scale(1.06) translateY(-3px);}
+}
+@keyframes gradientShift {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+/* --- DARK MODE --- */
+body.dark-mode {
+  background: linear-gradient(135deg, #181c2b 30%, #232c43 100%);
+  color: #e0e0e0;
+}
+body.dark-mode .navbar,
+body.dark-mode footer {
+  background: rgba(30,44,86,0.35);
+  color: #aac;
+}
+body.dark-mode .logo,
+body.dark-mode .nav-links li a,
+body.dark-mode #dark-mode-toggle {
+  color: #ffa500;
+}
+body.dark-mode .nav-links li a:hover::after {
+  background: #ffd580;
+}
+body.dark-mode .features {
+  background: #273250; color: #f4f4f4;
+}
+body.dark-mode .feature {
+  background: #1e243a; color: #ffd580;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+body.dark-mode .feature h3 {
+  color: #ffa500;
+}
+body.dark-mode .cta-btn {
+  background: #263167; color: #ffd580;
+}
+body.dark-mode .cta-btn:hover {
+  background: #ffa500; color: #181c2b;
+}
+
+/* Toggle Button Dark Mode Effect */
+body.dark-mode #dark-mode-toggle { color: #ffd580; }
+
